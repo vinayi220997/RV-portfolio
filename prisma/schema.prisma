@@ -1,0 +1,256 @@
+// Prisma schema — file-based via SQLite (single .db file in private storage)
+// Implements portfolio + admin panel data model. No external DB required.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ---------- Authentication ----------
+
+model User {
+  id                String   @id @default(cuid())
+  loginId           String   @unique
+  passwordHash      String
+  mustChangePwd    Boolean  @default(true)
+  hasLoggedInOnce   Boolean  @default(false)
+  defaultPasswordLoginUsed Boolean @default(false)
+  recoveryCodeHash  String?
+  recoveryExpires  DateTime?
+  failedAttempts    Int      @default(0)
+  lockedUntil       DateTime?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model AdminCode {
+  id          String   @id @default(cuid())
+  code        String   @unique // includes leading '#'
+  label       String
+  isActive    Boolean  @default(true)
+  isReserved  Boolean  @default(false) // #admin is permanently reserved
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  lastUsedAt  DateTime?
+}
+
+// ---------- Public Content ----------
+
+model Profile {
+  id              String   @id @default("singleton")
+  name            String
+  title           String
+  titles          String?  // comma-separated for multiple titles + typing animation
+  animateTitles   Boolean  @default(false)
+  summary         String
+  bio             String?
+  location        String?
+  email           String?
+  phone           String?
+  avatarUrl       String?
+  iconLetters     String?  // editable website icon letters (e.g. "RV")
+  resumePublicUrl String?
+  resumeExternalUrl String? // external resume URL (e.g. LinkedIn/GitHub resume)
+  availability    String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Experience {
+  id          String   @id @default(cuid())
+  company     String
+  role        String
+  location    String?
+  startDate   String
+  endDate     String?
+  description String?
+  achievements Json?
+  technologies Json?
+  order       Int      @default(0)
+  status      String   @default("published") // draft | published | hidden | archived
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Project {
+  id               String   @id @default(cuid())
+  title            String
+  slug             String   @unique
+  description      String
+  longDescription  String?
+  role             String?
+  technologies     Json?
+  imageUrl         String?
+  liveUrl          String?
+  sourceUrl        String?
+  category         String?
+  isFeatured       Boolean  @default(false)
+  startDate        String?
+  endDate          String?
+  order            Int      @default(0)
+  status           String   @default("published")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model Skill {
+  id          String   @id @default(cuid())
+  name        String
+  category    String
+  description String?
+  proficiency String?
+  order       Int      @default(0)
+  status      String   @default("published")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Education {
+  id            String   @id @default(cuid())
+  institution   String
+  qualification String
+  field         String?
+  startDate     String
+  endDate       String?
+  description   String?
+  credentialUrl String?
+  order         Int      @default(0)
+  status        String   @default("published")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Certification {
+  id            String   @id @default(cuid())
+  name          String
+  issuer        String?
+  date          String?
+  credentialUrl String?
+  order         Int      @default(0)
+  status        String   @default("published")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model SocialLink {
+  id        String   @id @default(cuid())
+  platform  String
+  url       String
+  icon      String?
+  label     String?
+  order     Int      @default(0)
+  status    String   @default("published")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SiteSetting {
+  id              String   @id @default("singleton")
+  siteTitle       String
+  siteDescription String?
+  siteUrl         String?
+  faviconUrl      String?
+  themeAccent     String?
+  themeMode       String?  // "light" | "dark" | "system"
+  themeSolidColor String?  // custom solid background color (hex/oklch)
+  themeGradient   String?  // custom gradient CSS (e.g. "linear-gradient(...)")
+  footerText      String?
+  metaKeywords    Json?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+// ---------- Private Data ----------
+
+model ContactMessage {
+  id           String   @id @default(cuid())
+  name         String
+  email        String
+  subject      String?
+  message      String
+  ip           String?
+  userAgent    String?
+  isRead       Boolean  @default(false)
+  isStarred    Boolean  @default(false)
+  isArchived   Boolean  @default(false)
+  replyStatus  String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  action     String
+  category   String
+  summary    String
+  ipAddress  String?
+  userAgent  String?
+  metadata   Json?
+  createdAt  DateTime @default(now())
+}
+
+model EmailTemplate {
+  id           String   @id @default(cuid())
+  name         String
+  category     String?
+  subject      String
+  body         String
+  placeholders Json?
+  status       String   @default("draft")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model ResumeVersion {
+  id           String   @id @default(cuid())
+  versionLabel String
+  filename     String
+  mimeType     String
+  fileSize     Int
+  storagePath  String
+  notes        String?
+  isPublished  Boolean  @default(false)
+  publicUrl    String?
+  uploadedAt   DateTime @default(now())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Backup {
+  id          String   @id @default(cuid())
+  filename    String
+  fileSize    Int
+  storagePath String
+  checksum    String
+  createdAt   DateTime @default(now())
+  createdBy   String?
+}
+
+model PublicationEvent {
+  id          String   @id @default(cuid())
+  action      String
+  target      String
+  targetId    String?
+  summary     String
+  status      String
+  errorMessage String?
+  createdAt   DateTime @default(now())
+}
+
+// Gmail SMTP configuration (App Password flow).
+// App password is stored AES-GCM encrypted with ENCRYPTION_KEY.
+model EmailConfig {
+  id              String   @id @default("singleton")
+  emailAddress    String
+  appPasswordEnc  String   // AES-GCM encrypted, format: iv(12) || ciphertext || tag(16), base64
+  displayName     String?
+  isVerified      Boolean  @default(false)
+  lastVerifiedAt  DateTime?
+  lastError       String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
