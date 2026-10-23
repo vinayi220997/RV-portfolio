@@ -1,12 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "export",
-  basePath: "/RV-portfolio",
-  assetPrefix: "/RV-portfolio/",
-  images: {
-    unoptimized: true,
-  },
+  output: "standalone",
   typescript: {
     ignoreBuildErrors: true,
   },
