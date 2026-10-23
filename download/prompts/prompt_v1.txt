@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 MASTER BUILD PROMPT — PERSONAL PORTFOLIO WEBSITE + SECURE WEB ADMIN PANEL
 1. ROLE AND PROJECT OBJECTIVE
 
@@ -885,4 +886,893 @@ Explain all required account setup and external service configuration clearly.
 Prefer simple, maintainable, documented solutions.
 Make the application extensible without requiring a complete rewrite later.
 
+=======
+MASTER BUILD PROMPT — PERSONAL PORTFOLIO WEBSITE + SECURE WEB ADMIN PANEL
+1. ROLE AND PROJECT OBJECTIVE
+
+Act as a senior full-stack developer, UI/UX designer, security engineer, and DevOps engineer.
+
+Build a complete, production-oriented personal portfolio website inspired by this reference:
+
+https://nuance-portfolio.framer.website/
+
+I will upload my résumé. Use that résumé as the primary source for my real personal information, professional summary, work experience, education, skills, projects, achievements, and contact information.
+
+Create an original implementation inspired by the reference website's visual style, layout, typography, spacing, animations, navigation, and content presentation. Do not simply copy the reference site or use its personal information.
+
+The result must be a fully functional, responsive website with a remotely accessible admin panel.
+
+My hosting requirements:
+
+GitHub and GitHub Pages for the public website.
+A free, publicly accessible URL.
+No purchased domain.
+No traditional database.
+No paid server.
+A web-based admin panel that I can access from any device using a link.
+File-based data organization wherever practical.
+Secure private data storage, authentication, backups, and email integration.
+
+Do not deliver a static mockup, a nonfunctional dashboard, or buttons that do nothing. Implement real functionality, or explicitly document any feature that requires an external service or setup.
+
+2. FIRST: ANALYZE MY RÉSUMÉ AND REFERENCE WEBSITE
+
+Before implementation:
+
+Inspect the reference website and identify its design system, page structure, navigation, typography, colors, section arrangement, cards, spacing, interactions, and responsive behavior.
+Read the uploaded résumé thoroughly.
+Extract factual information without inventing employers, dates, degrees, skills, projects, achievements, contact information, or professional claims.
+Identify missing information and use editable placeholders rather than fabricated details.
+Build a content map connecting each résumé section to its corresponding portfolio section.
+Propose the application architecture and file structure.
+Identify the features that can run on GitHub Pages alone and those that require an external free service.
+Explain the required services, their free-tier limitations, and their setup steps before depending on them.
+
+Do not ask me to manually re-enter information that can be extracted from my uploaded résumé.
+
+3. DESIGN AND USER EXPERIENCE
+
+Build a polished, professional portfolio based on the reference website.
+
+Requirements:
+
+Modern, minimal, premium visual design.
+Clear typographic hierarchy and generous spacing.
+Responsive layouts for mobile, tablet, laptop, and desktop.
+Smooth but restrained animations and transitions.
+Accessible contrast, focus indicators, semantic HTML, and keyboard navigation.
+Fast loading and optimized assets.
+Consistent spacing, color, typography, and component design tokens.
+Well-designed empty states, loading states, validation messages, and error states.
+Working navigation, links, download buttons, and contact actions.
+A custom 404 page.
+Search-engine-friendly page titles, descriptions, metadata, sitemap, and robots.txt.
+Social sharing metadata and configurable favicon.
+Optional dark/light theme if appropriate to the reference.
+Reduced-motion support for accessibility.
+
+Do not add unnecessary sections merely to make the website longer. Prioritize the actual information in my résumé.
+
+4. PUBLIC PORTFOLIO SECTIONS
+
+Create the sections that fit my résumé and professional goals.
+
+Home / Hero
+My name and professional title.
+Concise professional introduction.
+Primary call to action.
+Secondary call to action.
+Optional profile photo or avatar.
+Social and professional profile links.
+About
+Professional summary derived from my résumé.
+Career interests and relevant background.
+Editable content and optional highlights.
+Experience
+Employers, job titles, dates, descriptions, and achievements.
+Chronological timeline or polished cards.
+Support for multiple positions and employment periods.
+Projects
+Project title, description, role, technologies, images, and dates.
+Live demo and source-code links.
+Featured project option.
+Category or technology filters.
+Configurable project ordering.
+Hidden/draft projects that are not publicly displayed.
+Skills
+Group skills into meaningful categories.
+Editable descriptions and proficiency labels where justified.
+Do not invent proficiency percentages.
+Education and Certifications
+Institutions, qualifications, dates, and credentials.
+Optional credential verification links.
+Achievements and Additional Information
+Include only relevant résumé-supported information.
+Allow new sections to be created from the admin panel.
+Contact
+Contact form.
+Professional social links.
+Configurable public email address.
+Clear success and error states.
+Spam protection and server-side validation through the selected form service.
+Résumé Download
+Support a deliberately published, public résumé download.
+Never expose private source files or historical backups.
+Let me replace the published résumé without making private copies public.
+Footer
+Copyright and configurable footer text.
+Social links.
+Privacy notice if appropriate.
+Discreet admin-code entry field.
+5. REQUIRED TECHNICAL ARCHITECTURE
+
+Use a maintainable architecture compatible with GitHub Pages for the public website.
+
+Preferred frontend:
+
+React.
+TypeScript.
+Vite or another appropriate GitHub Pages-compatible build setup.
+Tailwind CSS or a consistent component styling system.
+Accessible reusable UI components.
+
+Use a compatible stack if Z.ai has a stronger supported alternative, but explain the trade-offs.
+
+Public hosting
+
+The public frontend must:
+
+Build into static HTML, CSS, JavaScript, and assets.
+Deploy to GitHub Pages.
+Work under the GitHub Pages project URL, including the correct base path.
+Avoid assumptions that a custom domain exists.
+Avoid server-side rendering requirements that GitHub Pages cannot support.
+Avoid exposing private data through build output, source maps, public JSON, static assets, or repository history.
+Remote admin hosting
+
+I require a web-based admin panel accessible through a shareable URL from any device.
+
+Do not make local computer execution a requirement.
+
+GitHub Pages is static hosting and cannot independently provide secure authentication, protected file writes, private message storage, or Gmail sending. Therefore, use a free-tier-compatible external serverless or backend service where necessary.
+
+Prefer the simplest maintainable option that supports:
+
+Secure authentication.
+Protected server-side operations.
+Private file/object storage.
+Contact-message persistence.
+Authorized content updates.
+Gmail integration.
+Secret management.
+Backups and recovery.
+
+Investigate suitable free-tier options before choosing one. Clearly identify usage limits, cold starts, quotas, account requirements, and possible future costs. Do not promise unlimited free operation.
+
+The public frontend and admin panel may share a repository, but private runtime data and credentials must not be published with them.
+
+6. PROJECT FILE AND FOLDER ORGANIZATION
+
+Design a clear, documented file structure similar to the following. Adapt it to the actual implementation.
+
+portfolio/
+├── public/
+│   ├── assets/
+│   ├── favicon.svg
+│   ├── robots.txt
+│   └── sitemap.xml
+├── src/
+│   ├── components/
+│   ├── layouts/
+│   ├── pages/
+│   ├── sections/
+│   ├── styles/
+│   ├── hooks/
+│   ├── services/
+│   ├── types/
+│   └── utils/
+├── content/
+│   ├── profile.json
+│   ├── experience.json
+│   ├── projects.json
+│   ├── skills.json
+│   ├── education.json
+│   ├── certifications.json
+│   ├── social-links.json
+│   ├── navigation.json
+│   ├── footer.json
+│   └── site-settings.json
+├── admin/
+│   └── admin application source
+├── backend/
+│   └── protected serverless functions
+├── scripts/
+│   ├── validate-content
+│   └── backup-and-restore
+├── tests/
+├── .gitignore
+├── .env.example
+├── README.md
+└── package.json
+
+
+This is a logical starting point, not permission to put private files in the public repository.
+
+Keep actual private storage outside public build directories and outside the public GitHub repository.
+
+Use the following logical data categories:
+
+Public portfolio content.
+Private original résumé and résumé history.
+Private application settings.
+Admin identity and authorization data.
+Custom admin codes and their metadata.
+Website contact messages.
+Email templates and email metadata.
+Encrypted backups and restoration metadata.
+Audit logs.
+Non-secret deployment configuration.
+
+Every data category must have a documented location, access policy, backup policy, and recovery method.
+
+7. FILE-BASED CONTENT MANAGEMENT
+
+Avoid a traditional database.
+
+Store editable portfolio content in validated JSON, Markdown, or similarly suitable structured files.
+
+The admin panel must support:
+
+Create.
+Read.
+Edit.
+Delete.
+Hide/show.
+Draft/publish.
+Reorder.
+Add and remove links.
+Upload and replace supported media.
+Preview changes.
+Validate data before saving.
+Restore a previous version.
+Import and export supported content.
+Confirm destructive operations.
+Display success and failure messages.
+
+Use stable unique IDs for records.
+
+Implement schema validation, safe file handling, file-size limits, allowed file types, and protection against malformed or malicious input.
+
+Do not allow arbitrary filesystem paths, unrestricted uploads, or user input to overwrite application code.
+
+Publishing workflow
+
+The workflow should be:
+
+I sign in to the web admin panel.
+I edit content.
+I preview the changes.
+I save the content to protected storage.
+I publish the selected changes.
+The public portfolio updates.
+The system records the publication result.
+
+Choose a practical publishing mechanism compatible with GitHub Pages.
+
+If content is stored in a private service, implement a secure publishing workflow that transfers only explicitly approved public content into the public deployment.
+
+If automated GitHub commits are used:
+
+Use a narrowly scoped credential or GitHub App installation.
+Keep credentials server-side.
+Never expose repository write tokens to the browser.
+Restrict writes to approved paths and branches.
+Validate content before committing.
+Handle merge conflicts and failed builds.
+Never publish private files or secrets.
+Preserve an audit trail of authorized changes.
+
+Explain how publication works and whether a successful change triggers an automated deployment.
+
+8. ADMIN ACCESS CODE SYSTEM
+
+Implement the following user experience.
+
+Footer entry field
+
+Add a discreet field in the public website footer.
+
+Field placeholder/label: #code
+
+Hint text: #role
+
+Expected behavior:
+
+Accept codes beginning with #.
+Trim accidental surrounding whitespace.
+Validate format and length.
+Show the message Code not existed for an unrecognized code.
+Route an accepted access identifier to the appropriate admin login screen.
+Reserved default access identifier
+
+The reserved identifier is: #admin
+
+Requirements:
+
+It must always remain reserved.
+It cannot be deleted through the admin panel.
+It cannot be renamed through the admin panel.
+It cannot be disabled by deleting or modifying a normal custom-code record.
+It must not automatically bypass authentication.
+It must not grant administrative access by itself.
+
+IMPORTANT SECURITY RULE:
+
+The frontend is public. Any code embedded in frontend JavaScript, HTML, JSON, or a public repository can be discovered. Therefore, #admin must be treated as an access identifier or route selector, not as a secret password.
+
+Perform actual authorization on the trusted backend. Never grant access merely because the browser submitted #admin.
+
+Custom admin codes
+
+Allow an authorized administrator to:
+
+Add multiple custom access codes beginning with #.
+Assign a descriptive role or label.
+View their status.
+Rename or rotate custom codes if supported by the chosen authorization model.
+Delete custom codes.
+Disable and re-enable custom codes.
+Review creation and modification dates.
+See validation errors for duplicate or malformed codes.
+
+The reserved #admin identifier must remain protected.
+
+Custom codes should be high-entropy random tokens if they function as bearer credentials. Do not treat predictable role names or short strings as secure authentication secrets.
+
+Store sensitive code verifiers securely on the backend. Do not expose a list of active secrets in public files or client-side code.
+
+9. ADMIN LOGIN SYSTEM
+
+Create a polished, responsive login page.
+
+Initial setup values requested by the owner:
+
+Login ID: admin_user
+Initial password: admin_password@58
+
+Treat these only as bootstrap credentials. Do not hardcode them in the public frontend, public JSON, or a publicly accessible repository.
+
+Require a secure initial setup process, then prompt me to change the initial password. If the supplied values have already been exposed in public source code or deployment artifacts, require credential rotation.
+
+Login form
+
+Fields:
+
+Login ID.
+Password.
+Show/hide password control.
+Remember-me option only if implemented securely.
+Sign-in button.
+Forgot password link.
+
+Requested field hints:
+
+Login ID: role_context
+Password: role_context@length
+
+These are placeholder or hint strings only, not actual validation rules.
+
+Validation and messages
+
+Incorrect login: Incorrect ID or password
+
+Successful login: Login successful
+
+Use accessible inline validation and a clear status message.
+
+Do not reveal whether a particular login ID exists.
+
+Additional security requirements:
+
+Server-side credential verification.
+Modern password hashing using a suitable password-hashing algorithm.
+Rate limiting.
+Temporary delays or lockouts after repeated failed attempts.
+Secure session management.
+Secure, HttpOnly, SameSite cookies where supported.
+CSRF protection where applicable.
+Session expiration and logout.
+Reauthentication for sensitive changes.
+No password or session-token logging.
+No storage of plaintext passwords in browser storage.
+No authentication decisions based solely on client-side JavaScript.
+10. CHANGE CREDENTIALS AND FORGOT PASSWORD
+Change login ID and password
+
+Allow an authenticated administrator to:
+
+Change the login ID.
+Change the password.
+Confirm the new password.
+Verify the current password or complete an equivalent reauthentication step.
+Receive confirmation after a successful update.
+Forgot password
+
+The requested recovery behavior is to restore the initial login ID and password.
+
+Implement this safely:
+
+Provide a Forgot password page.
+Require an authorized recovery process before changing credentials.
+Use verified recovery email, a securely stored recovery code, or the backend provider's supported administrative recovery mechanism.
+Do not permit anonymous visitors to reset credentials merely by clicking a button.
+Do not expose the default password in a public response.
+Never silently restore a known default password without authenticated recovery.
+Invalidate existing sessions when required.
+Record the recovery event in the audit log.
+
+After recovery, prompt me to establish new credentials.
+
+If a literal reset to the original credentials is implemented for compatibility, require authenticated recovery, keep the bootstrap values out of public source code, and require immediate rotation. Prefer generating a one-time recovery credential.
+
+11. ADMIN DASHBOARD
+
+Create a professional dashboard with a sidebar or responsive navigation.
+
+Include:
+
+Dashboard overview
+Portfolio publication status.
+Content counts.
+Draft and published item counts.
+Recent edits.
+Recent contact messages.
+Recent email activity.
+Backup status.
+Security notifications.
+Deployment status and errors.
+Content management
+Profile and biography.
+Experience.
+Projects.
+Skills.
+Education.
+Certifications.
+Achievements.
+Social links.
+Navigation.
+Footer.
+Public contact information.
+SEO settings.
+Theme settings.
+Custom portfolio sections.
+Visibility controls
+
+Each content item should support:
+
+Draft.
+Published.
+Hidden.
+Archived, where appropriate.
+
+Hidden or draft content must not be included in public build output or publicly accessible content APIs.
+
+Media management
+Upload images and permitted documents.
+Preview files.
+Replace assets.
+Remove unused assets.
+Validate file type and size.
+Display file usage and metadata.
+File management
+
+Provide safe operations for supported content files, including import, export, version history, and restore.
+
+Do not expose a general-purpose server filesystem browser or allow arbitrary executable file editing.
+
+12. PRIVATE RÉSUMÉ AND BACKUP MANAGEMENT
+
+The original uploaded résumé is private by default.
+
+Implement a résumé management area with:
+
+Original résumé storage.
+Multiple versions.
+Version labels and dates.
+Upload and replace operations.
+Notes about each version.
+Download access restricted to authorized administrators.
+Backup creation.
+Restore from backup.
+Optional public résumé publishing as a separate, deliberate action.
+
+Never automatically publish an original résumé simply because it was uploaded.
+
+When creating a public résumé download:
+
+Select the intended version.
+Confirm publication.
+Publish a separate public copy.
+Keep original and historical versions private.
+Allow removal or replacement of the public copy.
+
+Private backups must not be included in GitHub Pages artifacts, public release assets, source maps, or publicly accessible storage.
+
+13. DATA PROTECTION, ENCODING, AND ENCRYPTION
+
+Protect all important data, including:
+
+Original résumés and backups.
+Contact messages.
+Private settings.
+Credentials.
+Admin codes.
+Email configuration.
+Recovery material.
+Audit logs containing sensitive details.
+Custom encoding requirement
+
+Implement a versioned, documented custom encoding format for selected data representation, if it is useful for the file-based architecture.
+
+Requirements:
+
+Support conversion between the chosen representation and the original data.
+Include a format version.
+Validate input and output.
+Detect corrupted or unsupported encoded records.
+Provide migration tools for future format versions.
+Include tests for round-trip conversion.
+Document the encoding algorithm and its limitations.
+
+Custom encoding is for representation or obfuscation only. It must not be presented as security encryption.
+
+Do not invent a proprietary cryptographic algorithm.
+
+Real encryption
+
+Use established, authenticated encryption for sensitive stored files when application-level encryption is appropriate.
+
+Requirements:
+
+Keep encryption keys separate from encrypted files.
+Keep keys and credentials out of GitHub.
+Use the selected backend's secret manager or an equivalent secure configuration mechanism.
+Use authenticated encryption, such as AES-GCM or another suitable modern standard.
+Use unique nonces as required by the chosen algorithm.
+Version encrypted file formats.
+Handle authentication failures and corrupted ciphertext safely.
+Provide a tested decryption and restoration procedure.
+Do not log plaintext secrets.
+Document key rotation and recovery implications.
+
+Do not claim that data is recoverable if its encryption key is lost. Explain how keys and backups are managed.
+
+Password storage
+
+Passwords must be hashed using a suitable password-hashing algorithm, not encrypted for later retrieval and not merely converted into numbers.
+
+Use established cryptographic libraries. Never store passwords in plaintext.
+
+Private storage boundaries
+
+Use protected backend storage for:
+
+Résumé originals.
+Backups.
+Messages.
+Private settings.
+Credential verifiers.
+Email tokens and related sensitive metadata.
+
+The frontend must receive only the information needed for its current task.
+
+14. CONTACT FORM AND PRIVATE MESSAGE INBOX
+
+Build a functional contact form.
+
+Suggested fields:
+
+Name.
+Email address.
+Subject.
+Message.
+Optional consent checkbox where appropriate.
+Public form behavior
+Validate input on both client and server.
+Validate email format.
+Set sensible message-length limits.
+Add spam prevention and rate limiting.
+Show a success message after confirmed acceptance.
+Show a useful error if submission fails.
+Do not falsely report success when storage or delivery fails.
+Admin inbox
+
+Provide a private inbox where an authenticated administrator can:
+
+View submitted messages.
+Read complete message details.
+Mark unread/read.
+Star or flag important messages.
+Archive messages.
+Delete messages.
+Search and filter.
+Record response status.
+Reply through Gmail when integration is configured.
+
+Persist messages in protected file/object storage or another approved non-database storage mechanism.
+
+Use unique message IDs, timestamps, validation, and safe serialization.
+
+Do not store messages in publicly accessible JSON files or GitHub commits.
+
+If the selected free hosting provider cannot provide reliable persistent file storage, choose an appropriate supported private storage option and explain its limitations.
+
+15. GMAIL INTEGRATION AND EMAIL MANAGEMENT
+
+Build an email-management section in the admin panel.
+
+Gmail connection
+Use the Gmail API with Google OAuth where practical.
+Request only the permissions required for the implemented functionality.
+Keep refresh tokens and credentials server-side.
+Never expose Google client secrets, refresh tokens, or app passwords in browser code or public GitHub files.
+Provide connection status, reconnect, and disconnect controls.
+Explain any Google Cloud project, OAuth consent, or verification setup that I must complete.
+
+Do not assume that a Gmail App Password can be safely used directly from a static website. If SMTP or an App Password is selected, it must be handled by a secure server-side service, if supported.
+
+Email functions
+Compose new email.
+Reply to contact messages.
+Set recipient, subject, and body.
+Support plain text and appropriately sanitized HTML.
+Send through the connected Gmail account.
+Show actual send success or failure.
+Track message metadata where available.
+Display sent status and timestamps.
+Handle expired authentication and revoked permissions.
+
+Do not claim that incoming Gmail messages can be displayed unless Gmail reading permissions and the corresponding API implementation have been configured.
+
+Email templates
+
+Allow me to:
+
+Create templates.
+Edit templates.
+Duplicate templates.
+Delete templates.
+Preview templates.
+Set template names and categories.
+Add subject and body content.
+Use documented placeholders, such as {{name}}, {{email}}, and {{project}}, when appropriate.
+Preview resolved placeholder values.
+Save drafts.
+Insert templates into the compose or reply editor.
+
+Templates should be stored privately if they contain sensitive information. Validate placeholders and safely escape untrusted content.
+
+16. AUDIT LOGGING
+
+Maintain a private audit trail for important administrative actions:
+
+Successful and failed sign-in events, without logging passwords.
+Credential changes.
+Password recovery.
+Admin-code creation and deletion.
+Content changes.
+Publication events.
+File uploads and deletions.
+Backup and restore operations.
+Email send events.
+Authorization changes.
+
+Include timestamps and action summaries.
+
+Avoid logging passwords, access tokens, message bodies unnecessarily, or encryption keys.
+
+Allow administrators to review relevant audit events. Restrict deletion or modification of audit records as far as the selected architecture supports.
+
+17. SECURITY AND PRIVACY REQUIREMENTS
+
+Perform a security review before declaring the project complete.
+
+Check for:
+
+Hardcoded secrets.
+Public credentials.
+Private files included in deployment artifacts.
+Insecure direct object references.
+Broken access control.
+Missing server-side validation.
+Cross-site scripting.
+CSRF vulnerabilities where relevant.
+Injection vulnerabilities.
+Insecure upload handling.
+Weak sessions.
+Missing rate limits.
+Publicly accessible backups.
+Unrestricted repository writes.
+Excessive OAuth permissions.
+Unsafe error messages.
+Dependency vulnerabilities.
+Missing authorization checks on serverless endpoints.
+
+Every protected API endpoint must authenticate the user and authorize the requested operation server-side.
+
+Do not rely on hiding the admin route, encoding an access code, or checking a password only in frontend JavaScript.
+
+Use a least-privilege approach.
+
+Provide a clear privacy notice and a reasonable message-retention/deletion policy.
+
+18. GITHUB REPOSITORY AND DEPLOYMENT
+
+Prepare a repository that I can publish using GitHub.
+
+Include:
+
+A complete README.
+Installation instructions.
+Environment-variable documentation.
+.env.example containing placeholder names only.
+.gitignore configured for secrets, private files, local backups, generated artifacts, and sensitive configuration.
+Build scripts.
+Test scripts.
+GitHub Actions workflow for the public website.
+Deployment instructions.
+Backend deployment instructions for the selected free service.
+Required GitHub repository settings.
+Rollback and recovery instructions.
+
+Use GitHub Actions secrets or the chosen provider's secret manager where appropriate.
+
+Never commit real credentials or private data.
+
+Explain the distinction between a private repository and a public deployment: a public GitHub Pages website exposes the built public assets even if the source repository is private.
+
+Ensure that only explicitly approved public content reaches the public deployment.
+
+If the chosen backend requires an environment variable, secret, OAuth callback URL, or provider setting, document the exact setup steps.
+
+19. TESTING AND ACCEPTANCE CRITERIA
+
+Implement automated tests where practical and manually verify the following.
+
+Public website
+All major sections render correctly.
+The layout works on mobile and desktop.
+Navigation and links work.
+Public résumé download works only after publication.
+Hidden and draft items remain private.
+SEO metadata is present.
+GitHub Pages base paths work correctly.
+Admin access
+#admin is permanently reserved.
+Invalid codes display Code not existed.
+Custom codes can be added and deleted by an authorized administrator.
+The reserved code cannot be deleted or disabled through normal management.
+Codes do not bypass authentication.
+Incorrect credentials display Incorrect ID or password.
+Successful authentication displays Login successful.
+Unauthorized users cannot call protected APIs.
+Logout and session expiration work.
+Password recovery requires authorization.
+Credentials can be changed securely.
+Content management
+Add, edit, delete, hide, publish, and reorder operations work.
+Validation rejects malformed data.
+Failed saves display errors.
+Backups can be restored.
+Private files never enter public deployment output.
+Changes are published through the documented workflow.
+Messages and email
+Contact form validation works.
+Valid messages are stored privately.
+Spam controls work.
+Inbox operations work.
+Gmail authorization and sending work after configuration.
+Email templates can be created, edited, saved, and reused.
+Failed submissions and email sends are handled accurately.
+Data protection
+Private files cannot be fetched anonymously.
+Encryption and decryption pass round-trip tests.
+Invalid ciphertext is rejected.
+Secrets are absent from built assets.
+Repository scanning detects accidental secrets.
+Backup and restore procedures are documented and tested.
+
+Do not mark a feature as complete if it is only a visual placeholder or if the required external service has not been configured.
+
+20. IMPLEMENTATION WORKFLOW
+
+Work in these phases.
+
+Phase 1: Discovery
+Inspect the reference.
+Analyze the uploaded résumé.
+Confirm the architecture.
+Identify external services and their free-tier limits.
+Produce a content map and implementation plan.
+Phase 2: Design and foundation
+Establish design tokens.
+Build shared components.
+Create the public portfolio structure.
+Configure the GitHub Pages build.
+Phase 3: Public website
+Populate content from the résumé.
+Implement responsive sections and navigation.
+Add the footer admin-code field.
+Add the contact form and published résumé download.
+Phase 4: Protected admin and backend
+Implement authentication and sessions.
+Implement the reserved and custom admin-code system.
+Build the dashboard.
+Implement protected file operations and content management.
+Add the publishing workflow.
+Phase 5: Data protection
+Separate public and private storage.
+Implement encryption where appropriate.
+Configure backups, recovery, and audit logging.
+Verify that private data cannot reach the public build.
+Phase 6: Messaging and Gmail
+Implement private contact-message storage.
+Build the admin inbox.
+Configure OAuth/Gmail integration.
+Build email composition and template management.
+Phase 7: Verification and deployment
+Run tests.
+Fix bugs and security issues.
+Build the public site.
+Deploy to GitHub Pages.
+Deploy the protected backend to the selected free service.
+Verify the actual URLs and all configured features.
+Provide the final setup and maintenance documentation.
+
+If a required service needs account credentials or approval from me, stop at that step and explain exactly what I must do. Do not fabricate successful deployments, API credentials, or working integrations.
+
+21. FINAL DELIVERABLES
+
+Deliver:
+
+Complete source code.
+Public portfolio website.
+Web-accessible admin panel.
+Secure backend/serverless functions as required.
+Organized content schemas and initial résumé-derived content.
+Private file-storage strategy.
+Custom admin-code management.
+Credential management and recovery.
+Content editing and publishing workflows.
+Contact form and private inbox.
+Gmail integration.
+Email template management.
+Encryption and backup implementation where applicable.
+GitHub Actions deployment workflow.
+Automated tests.
+README and setup guide.
+Security checklist.
+Free-tier service comparison and limitations.
+Step-by-step GitHub Pages deployment instructions.
+Step-by-step instructions to access the admin panel from any device.
+22. NON-NEGOTIABLE RULES
+Use my uploaded résumé as the source of truth.
+Use the reference website as visual inspiration.
+Keep the public portfolio polished and professional.
+Do not require me to run the admin panel locally.
+Do not require a paid server or custom domain.
+Use GitHub Pages for the public website.
+Avoid a traditional database.
+Use a suitable free external backend/storage service when required.
+Keep private data and credentials out of public GitHub files and deployment artifacts.
+Treat custom encoding as obfuscation, not encryption.
+Never invent security guarantees.
+Never claim that GitHub Pages alone supports secure backend functionality.
+Never present unconfigured integrations as working.
+Do not use fake buttons or mock data in place of required functionality.
+Explain all required account setup and external service configuration clearly.
+Prefer simple, maintainable, documented solutions.
+Make the application extensible without requiring a complete rewrite later.
+
+>>>>>>> a2dfa5a6b6903e104700d33ef9459944ec53cbdd
 Begin by inspecting the reference website and my uploaded résumé, then present the proposed architecture, file structure, free-service choices, and deployment plan. After that, implement the complete application in verifiable stages.
