@@ -1,0 +1,48 @@
+Website Design, Version Control, Admin Login, and Email Service Updates
+
+1. Save the Current Website Version
+Save the current website as a separate version before making any changes.
+Reference website: https://nuance-portfolio.framer.website/
+Use this website as the design reference for the UI, layout, styling, colors, typography, animations, and overall user experience.
+Apply the new design to the next version without modifying the saved version.
+
+2. Maintain Separate Versions
+Keep every website version separately.
+Never overwrite or delete an existing version when creating an update.
+Maintain a clear version history, such as v1, v2, v3, and so on.
+Save every prompt in a separate file with its version number.
+Keep the original prompt as prompt_v1.txt.
+Save the updated prompt as prompt_v2.txt and continue this naming convention for future updates.
+Each new version must include only the new changes while preserving the previous versions.
+
+3. Admin Login Page
+Display the default admin login credentials only during the first login.
+After the first login, hide the credentials on all subsequent visits.
+Always display the following hints on the login page:
+role_context
+role_context@length
+Do not expose the default password again after the initial login.
+
+4. Forgot Password and Recovery Flow
+Before allowing the user to click "Queue recovery request", ask them to enter the admin verification code using the prompt #code.
+Validate the entered code before proceeding.
+Recovery rules
+If the user enters the default admin code, allow a one-time login using the default password only.
+If the user enters the correct recovery code, excluding the default code, allow them to proceed with the "Queue recovery request" flow.
+If the code is incorrect, prevent the user from proceeding and display an appropriate error message.
+Ensure that the default-password login can be used only once and cannot be reused.
+
+5. Email Service Integration
+Allow me to configure my Google account's App Password to connect the email service.
+Enable me to reply directly to incoming emails from within the website's admin interface.
+Support sending replies through my configured Google email account.
+Provide appropriate validation and error messages for failed authentication, connection issues, or unsuccessful email delivery.
+Store email credentials securely on the server. Never expose the Google App Password in the frontend or source code.
+
+6. Implementation Requirements
+Apply all changes to a new website version.
+Preserve the existing version and all previous prompt files.
+Keep the implementation secure, maintainable, and easy to update.
+Test the admin login, one-time default-password access, recovery-code validation, password recovery flow, and email reply functionality before releasing the new version.
+
+Expected result: A redesigned website inspired by the reference, secure admin authentication and recovery, direct email replies through Google, and a complete version history with separately stored prompts.
